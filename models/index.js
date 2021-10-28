@@ -22,13 +22,12 @@ Tag.belongsToMany(Tag, {
     unique: false,
     foreignKey: 'product_id'
   },
-  as: 'product_tag'
+  as: 'product_tags'
 });
 
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
   through: {ProductTag,
-  foreignKey: 'tag_id',
   unique: false
   },
   as: 'tag_product'

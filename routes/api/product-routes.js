@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       model: Category,
     },
     {
-      model: Tag, through: ProductTag, as: 'product_tag'
+      model: Tag, through: ProductTag, as: 'product_tags'
     }]
   });
 });
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
       model: Category,
     },
   {
-    model: Tag, through: ProductTag, as: "product_tag"
+    model: Tag, through: ProductTag, as: "product_tags"
   }]
   })
 });
