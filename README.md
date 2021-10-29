@@ -7,7 +7,7 @@ Sequalize to interact with the MySQL database.
 
 ## Link to video walkthrough:
 Note, this is a work in process, not all GET, POST, PUT and DELETE routes are fully implemented yet.
-XI
+https://watch.screencastify.com/v/MV6BpvmwMUIDtBRsEVRL
 
 
 ## Installation
@@ -24,7 +24,7 @@ XI
 Not all Create, Post, Put, and Delete functions are fully implemented. This project is still a work in progress 
 
 ## Repositroy
-XI
+https://github.com/IvanPerezRWS/ecommerce.git
 
 ## Email
 Reach out at ivan.perez.rws@gmail.com
