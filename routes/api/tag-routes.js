@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
     include: [{
       model: Product, through: ProductTag, as: 'tag_product'
     }]
-  });
+  })
+  .then((tagData) => res.json(tagData));
 });
 
 router.get('/:id', (req, res) => {
@@ -20,7 +21,7 @@ router.get('/:id', (req, res) => {
     include: [{
       model: Product, through: ProductTag, as: 'tag_product'
     }]
-  })
+  }).then((tagData) => res.json(tagData));
 });
 
 router.post('/', (req, res) => {
@@ -32,6 +33,12 @@ router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   const tagData = Tag.update(req.body, {
     where: {id: req.params.id}
+  })
+  .then((tagData) => {
+    if (!tagData) {
+      res.status(404).json({ message: "No tag found with this id"});
+      return;
+    }
   });
 });
 
@@ -39,6 +46,13 @@ router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
   const tagData = Tag.destroy({
     where: { id: req.params.id }
+  })
+  .then((tagData) => {
+    if (!tagData) {
+      res.status(404).json({ message: "No tag found with this id"});
+    return;
+    }
+    res.json(tagData);
   });
 });
 

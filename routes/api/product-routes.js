@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { json } = require('sequelize/types');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
@@ -14,7 +15,8 @@ router.get('/', (req, res) => {
     {
       model: Tag, through: ProductTag, as: 'product_tags'
     }]
-  });
+  })
+  .then((productData) => res,json(productData));
 });
 
 // get one product
@@ -29,6 +31,17 @@ router.get('/:id', (req, res) => {
     model: Tag, through: ProductTag, as: "product_tags"
   }]
   })
+  .then((productData) => {
+    if (!productData) {
+      res.status(404).json({ message: "No products found with this id"});
+      return;
+    }
+  })
+  .then((productData) => res.status(200).json(productData))
+  .catch((err) => {
+    console.log(err);
+    res.status(400).json(err);
+  });
 });
 
 // create new product
